@@ -1,0 +1,15 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+          - /data/logs/*.log
+      input_type: log
+      document_type: biz-log
+  registry_file: ./registry/mark
+output:
+  logstash:
+    hosts: ["logstash:5044"]
+logging:
+  files:
+    path: /var/log/filebeat
+    rotateeverybytes: 10485760 # = 10MB

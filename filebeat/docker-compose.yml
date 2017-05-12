@@ -1,0 +1,13 @@
+version: '2'
+services:
+  filebeat:
+    build: ./ 
+    container_name: filebeat 
+    restart: always
+    network_mode: "bridge"
+    extra_hosts:
+      - "logstash:10.30.54.174"
+    volumes:
+      - ./conf/filebeat.yml:/etc/filebeat/filebeat.yml
+      - /mnt/logs/appserver/app/biz:/data/logs
+      - ./registry:/etc/registry
